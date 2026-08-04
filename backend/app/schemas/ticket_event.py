@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import Optional
 from pydantic import BaseModel, ConfigDict
 from app.enums.enums import Event
 
@@ -7,8 +8,8 @@ class TicketEventResponse(BaseModel):
     
     id: int
     ticket_id: int
-    performed_by: int
+    performed_by: Optional[int] = None
     event_type: Event
-    old_value: str
-    new_value: str
+    old_value: Optional[str] = None
+    new_value: Optional[str] = None
     created_at: datetime

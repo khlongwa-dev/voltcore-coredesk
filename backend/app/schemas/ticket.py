@@ -5,7 +5,7 @@ from pydantic import BaseModel, ConfigDict
 
 from app.models.ticket import Category, Office, Priority, Status
 
-class TickeCreate(BaseModel):
+class TicketCreate(BaseModel):
     title: str
     description: str
     category: Category
@@ -13,6 +13,7 @@ class TickeCreate(BaseModel):
     office: Office
 
 class TicketUpdate(BaseModel):
+    status: Optional[Status] = None
     category: Optional[Category] = None
     priority: Optional[Priority] = None
     assigned_to: Optional[int] = None
@@ -26,7 +27,7 @@ class TicketResponse(BaseModel):
     category: Category
     priority: Priority
     status: Status
-    created_by: int
+    created_by: Optional[int] = None
     assigned_to: Optional[int] = None
     office: Office
     created_at: datetime

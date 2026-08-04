@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import Optional
 from pydantic import BaseModel, ConfigDict, Field
 from app.enums.enums import Channel
 
@@ -12,4 +13,4 @@ class NotificationResponse(BaseModel):
     channel: Channel
     is_sent: bool
     created_at: datetime
-    sent_at: datetime
+    sent_at: Optional[datetime] = None
