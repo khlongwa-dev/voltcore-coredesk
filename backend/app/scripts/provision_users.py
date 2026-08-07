@@ -31,12 +31,12 @@ def provision_from_csv(path: str) -> None:
                 must_change_password = True,
             )
 
-            db.add(User)
+            db.add(user)
             created += 1
 
     db.commit()
     db.close()
     print(f"done: created {created}, skipped {skipped}.")
 
-    if __name__ == "__main__":
-        provision_from_csv(sys.argv[1] if len(sys.argv) > 1 else "employees.csv")
+if __name__ == "__main__":
+    provision_from_csv(sys.argv[1] if len(sys.argv) > 1 else "employees.csv")

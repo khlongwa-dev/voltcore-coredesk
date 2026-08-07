@@ -42,7 +42,7 @@ def create_access_token(user: User) -> str:
         "exp": expire
     }
 
-    return jwt.encode(payload, settings.SECRETE_KEY, algorithm=settings.ALGORITHM)
+    return jwt.encode(payload, settings.SECRET_KEY, algorithm=settings.ALGORITHM)
 
 def decode_access_token(token: str) -> TokenPayload:
     credentials_exception = HTTPException(
@@ -52,7 +52,7 @@ def decode_access_token(token: str) -> TokenPayload:
     )
 
     try:
-        payload = jwt.decode(token, settings.SECRETE_KEY, algorithms=[settings.ALGORITHM])
+        payload = jwt.decode(token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM])
         return TokenPayload(sub=int(payload["sub"]), role=payload["role"], exp=payload["exp"])
     except (JWTError, KeyError, ValueError):
         raise credentials_exception

@@ -12,6 +12,9 @@ class TicketCreate(BaseModel):
     priority: Priority
     office: Office
 
+class TicketAssign(BaseModel):
+    assigned_to: int
+
 class TicketUpdate(BaseModel):
     status: Optional[Status] = None
     category: Optional[Category] = None

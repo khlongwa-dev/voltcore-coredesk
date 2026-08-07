@@ -32,7 +32,7 @@ class Event(str, enum.Enum):
     created = "created"
     assigned = "assigned"
     reassigned = "reassigned"
-    status_changes = "status_changed"
+    status_changed = "status_changed"
     commented = "commented"
     resolved = "resolved"
     closed = "closed"
