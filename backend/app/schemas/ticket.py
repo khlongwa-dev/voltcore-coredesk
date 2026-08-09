@@ -3,8 +3,8 @@ from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 
-from app.models.ticket import Category, Office, Priority, Status
-
+from app.enums.enums import Category, Office, Priority, Status
+from app.schemas.user import UserSummary
 class TicketCreate(BaseModel):
     title: str
     description: str
@@ -32,6 +32,7 @@ class TicketResponse(BaseModel):
     status: Status
     created_by: Optional[int] = None
     assigned_to: Optional[int] = None
+    assignee: Optional[UserSummary] = None
     office: Office
     created_at: datetime
     updated_at: Optional[datetime] = None

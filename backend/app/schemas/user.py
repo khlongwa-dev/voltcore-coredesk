@@ -3,6 +3,13 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, EmailStr, Field
 from app.models.user import Role, Department, Office
 
+class UserSummary(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: int
+    full_name: str
+    role: Role
+    
 class UserCreate(BaseModel):
     full_name: str
     email: EmailStr
