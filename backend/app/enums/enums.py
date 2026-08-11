@@ -13,7 +13,7 @@ class Category(str, enum.Enum):
     hardware = "hardware"
     software = "software"
     network = "network"
-    account = "account"
+    account = "access"
     other = "other"
 
 class Priority(str, enum.Enum):
