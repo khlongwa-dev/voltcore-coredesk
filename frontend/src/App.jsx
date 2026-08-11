@@ -3,6 +3,8 @@ import LoginPage from './pages/LoginPage';
 import ChangePasswordPage from './pages/ChangePasswordPage';
 import DashboardPage from './pages/DashboardPage';
 import ProtectedRoute from './routes/ProtectedRoute';
+import TicketsPage from './pages/TicketPage';
+import NewTicketPage from './pages/NewTicketPage';
 
 export default function App() {
   return (
@@ -29,6 +31,8 @@ export default function App() {
 
       <Route path="/" element={<Navigate to="/dashboard" replace />} />
       <Route path="*" element={<Navigate to="/dashboard" replace />} />
+      <Route path="/tickets" element={<ProtectedRoute><TicketsPage /></ProtectedRoute>} />
+      <Route path="/tickets/new" element={<ProtectedRoute><NewTicketPage /></ProtectedRoute>} />
     </Routes>
   );
 }

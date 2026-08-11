@@ -1,14 +1,14 @@
-import { NavLink } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { Link, useLocation } from "react-router-dom";
 
 const NAV_ITEMS = {
     employee: [
         { to: '/dashboard', label: 'Dashboard' },
         { to: '/tickets', label: 'My Ticket' },
-        { to: '/ticket/new', label: 'New Ticket' },
+        { to: '/tickets/new', label: 'New Ticket' },
     ],
     agent: [
-        { to: '/dashboard', label: 'All Ticket' },
+        { to: '/tickets', label: 'All Ticket' },
         { to: '/tickets?assigned_to_me=true', label: 'My Queue' },
     ],
     admin: [
@@ -24,6 +24,7 @@ function initials(name = '') {
 
 export default function AppLayout({ title, children }) {
     const { user, logout } = useAuth();
+    const location = useLocation();
     const items = NAV_ITEMS[user?.role] || [];
 
     return (
@@ -34,22 +35,23 @@ export default function AppLayout({ title, children }) {
                     <div className="text-lg font-bold mt-1">Coredesk</div>
                 </div>
                 <nav className="flex flex-col">
-                    {items.map((item) => (
-                        <NavLink
-                            key = {item.to}
-                            to = {item.to}
-                            end
-                            className={({ isActive }) =>
-                            `px-6 py-2.5 text-sm font-medium border-l-2 ${
-                                isActive
-                                    ? 'text-white bg-white/5 border-orange'
-                                    : 'text-white/70 border-transparent hover:text-white'
-                            }`
-                        }
+                    {items.map((item) => {
+                        const fullCurrentPath = location.pathname + location.search;
+                        const isActive = fullCurrentPath === item.to;
+                        return (
+                        <Link
+                            key={item.to}
+                            to={item.to}
+                            className={`px-6 py-2.5 text-sm font-medium border-l-2 ${
+                            isActive
+                                ? 'text-white bg-white/5 border-orange'
+                                : 'text-white/70 border-transparent hover:text-white'
+                            }`}
                         >
                             {item.label}
-                        </NavLink>
-                    ))}
+                        </Link>
+                        );
+                    })}
                 </nav>
                 <div className="mt-auto px-6 pt-4 border-t border-white/10 text-xs text-white/55">
                     {user?.office === 'durban' ? 'Durban HQ' : user?.office === 'johannesburg' ? 'Johannesburg Branch' : ''}

@@ -35,8 +35,8 @@ export default function TicketTable({ tickets }) {
             <td className="px-4 py-3"><StatusPill status={ticket.status} /></td>
             <td className="px-4 py-3 capitalize">{ticket.office}</td>
             <td className="px-4 py-3">
-              {ticket.assigned_to ? (
-                <span className="text-xs">{ticket.assigned_to.full_name}</span>
+              {ticket.assignee ? (
+                <span className="text-xs">{ticket.assignee.full_name}</span>
               ) : (
                 <span className="text-xs text-muted italic">Unassigned</span>
               )}
