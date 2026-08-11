@@ -43,7 +43,7 @@ def list_all(
         db, current_user, office=office, assigned_to_me=assigned_to_me, ticket_status=status
     )
 
-@router.patch("/{ticket_id}", response_model=TicketResponse)
+@router.get("/{ticket_id}", response_model=TicketResponse)
 def get_one(
     ticket_id: int,
     current_user: User = Depends(get_current_active_user),
