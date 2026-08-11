@@ -2,7 +2,7 @@ from  fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.database import Base, engine
-from app.api import auth, tickets, comments, users
+from app.api import auth, tickets, comments, users, notifications
 
 app = FastAPI(
 	title="Coredesk",
@@ -22,6 +22,7 @@ app.include_router(auth.router)
 app.include_router(tickets.router)
 app.include_router(comments.router)
 app.include_router(users.router)
+app.include_router(notifications.router)
 
 Base.metadata.create_all(bind=engine)
 

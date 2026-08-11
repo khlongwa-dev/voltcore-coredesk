@@ -12,5 +12,6 @@ class NotificationResponse(BaseModel):
     message: str
     channel: Channel
     is_sent: bool
+    is_read: bool
     created_at: datetime
     sent_at: Optional[datetime] = None

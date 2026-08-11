@@ -12,5 +12,6 @@ class Notification(Base):
     message = Column(Text, nullable=False)
     channel = Column(Enum(Channel), nullable=False, default=Channel.ntfy)
     is_sent = Column(Boolean, default=False, nullable=False)
+    is_read = Column(Boolean, default=False, nullable=False)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     sent_at = Column(DateTime(timezone=True), nullable=True)
