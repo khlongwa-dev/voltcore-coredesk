@@ -8,7 +8,7 @@ from app.services.auth import get_current_active_user
 from app.services.comment import create_comment, list_comments
 
 router = APIRouter(
-    prefix = "/api/ticket/{ticket_id}/comments",
+    prefix = "/api/tickets/{ticket_id}/comments",
     tags = ["comments"],
     dependencies = [Depends(get_current_active_user)],
 )

@@ -24,6 +24,7 @@ class Priority(str, enum.Enum):
 
 class Status(str, enum.Enum):
     open = "open"
+    pending = "pending"
     in_progress = "in_progress"
     resolved = "resolved"
     closed = "closed"

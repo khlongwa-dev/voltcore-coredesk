@@ -9,7 +9,7 @@ from app.models.user import User
 from app.models.ticket import Ticket
 from app.schemas.ticket import TicketCreate, TicketUpdate
 
-from app.services.notification import notify_critical_unassigned, notify_ticket_assigned
+from app.services.notification import notify_critical_unassigned, notify_ticket_assigned, notify_user
 
 def _log_event(
         db: Session,
@@ -151,5 +151,8 @@ def update_ticket_status(
 
     db.commit()
     db.refresh(ticket)
+
+    if ticket.created_by and ticket.created_by != current_user.id:
+        notify_user(db, ticket.created_by, ticket.id, f"Your ticket #{ticket.id} status changed to {new_status.value.replace('_', ' ')}.")
     return ticket
 
