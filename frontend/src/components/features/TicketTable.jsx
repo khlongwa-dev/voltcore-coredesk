@@ -46,9 +46,10 @@ export default function TicketTable({ tickets }) {
               {canAssignTickets(user) && !ticket.assigned_to && (
                 <button
                   onClick={() => assignTicket.mutate({ ticketId: ticket.id, assignedTo: user.id })}
-                  className="text-xs font-semibold text-orange"
+                  disabled={assignTicket.isPending}
+                  className="text-xs font-semibold text-orange border border-orange/30 rounded-md px-3 py-1.5 transition-colors hover:bg-orange hover:text-white hover:border-orange disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Assign to me
+                  {assignTicket.isPending ? 'Assigning...' : 'Assign to me'}
                 </button>
               )}
             </td>
