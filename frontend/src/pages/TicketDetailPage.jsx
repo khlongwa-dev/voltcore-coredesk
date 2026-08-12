@@ -8,7 +8,7 @@ import PriorityTag from '../components/ui/PriorityTag';
 import Button from '../components/ui/Button';
 import CommentThread from '../components/features/CommentThread';
 
-const STATUS_FLOW = ['open', 'in_progress', 'resolved', 'closed'];
+const STATUS_FLOW = ['open', 'pending', 'in_progress', 'resolved', 'closed'];
 
 export default function TicketDetailPage() {
   const { id } = useParams();
@@ -53,9 +53,10 @@ export default function TicketDetailPage() {
               <Button
                 variant="secondary"
                 className="mt-2 w-full"
-                onClick={() => assignTicket.mutate({ ticketId: ticket.id, assignedTo: user.id })}
+                disabled={assignTicket.isPending}
+                onClick={() => assignTicket.mutate({ ticketId: id, assignedTo: user.id })}
               >
-                Assign to me
+                {assignTicket.isPending ? 'Assigning...' : 'Assign to me'}
               </Button>
             )}
           </div>
@@ -70,9 +71,9 @@ export default function TicketDetailPage() {
                     variant={s === ticket.status ? 'secondary' : 'ghost'}
                     disabled={s === ticket.status || updateStatus.isPending}
                     className="capitalize"
-                    onClick={() => updateStatus.mutate({ ticketId: ticket.id, newStatus: s })}
+                    onClick={() => updateStatus.mutate({ ticketId: id, newStatus: s })}
                   >
-                    {s.replace('_', ' ')}
+                    { updateStatus.isPending && updateStatus.variables?.newStatus === s ? 'Updating...' : s.replace('_', ' ')}
                   </Button>
                 ))}
               </div>

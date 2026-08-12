@@ -1,5 +1,6 @@
 const STYLES = {
     open: 'bg-blue-50 text-blue-700',
+    pending: 'bg-purple-50 text-purple-700',
     in_progress: 'bg-orange/10 text-warn',
     resolved: 'bg-green-50 text-success',
     closed: 'bg-border/60 text-muted',
@@ -7,6 +8,7 @@ const STYLES = {
 
 const LABELS = {
     open: 'Open',
+    pending: 'Pending',
     in_progress: 'In Progress',
     resolved: 'Resolved',
     closed: 'Closed',

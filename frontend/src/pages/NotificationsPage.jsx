@@ -23,7 +23,7 @@ export default function NotificationsPage() {
             >
               <div className="flex items-center justify-between">
                 <p className="text-ink">{n.message}</p>
-                {!n.is_read && <span className="w-2 h-2 rounded-full bg-orange flex-shrink-0 ml-3" />}
+                {!n.is_read && <span className="w-2 h-2 rounded-full bg-orange shrink-0 ml-3" />}
               </div>
               <p className="text-[11px] text-muted mt-1">{new Date(n.created_at).toLocaleString()}</p>
             </Link>
